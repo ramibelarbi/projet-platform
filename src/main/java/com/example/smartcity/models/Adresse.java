@@ -13,7 +13,7 @@ public class Adresse {
     private Long id;
     private Gouvernerat gouvernerat;
     private String ville;
-    private String Cite;
+    private String cite;
     private String rue;
     private int numero;
 }

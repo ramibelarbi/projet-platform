@@ -27,6 +27,6 @@ public class Personne implements Serializable {
     private Role role;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dateNaissance;
-    /*@OneToOne(mappedBy = "adresse")
-    private Adresse adresse;*/
+    @OneToOne
+    private Adresse adresse;
 }
