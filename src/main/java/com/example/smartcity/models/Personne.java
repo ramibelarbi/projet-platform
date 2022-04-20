@@ -9,11 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-enum Role{
-    Administrateur,
-    Employe,
-    Citoyen
-}
+
 
 @Entity @Table(name = "personne")
 @Getter @Setter @NoArgsConstructor
