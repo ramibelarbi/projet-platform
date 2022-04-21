@@ -1,33 +1,31 @@
 package com.example.smartcity.services;
 
-import com.example.smartcity.exceptions.PersonneNotFoundException;
+import com.example.smartcity.exceptions.NotFoundException;
 import com.example.smartcity.models.Personne;
 import com.example.smartcity.repos.AdresseRepo;
 import com.example.smartcity.repos.PersonneRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service @AllArgsConstructor
 public class PersonneService {
+
     private final PersonneRepo personneRepo;
     private final AdresseRepo adresseRepo;
-    @Autowired
-    public PersonneService(PersonneRepo personneRepo, AdresseRepo adresseRepo) {
-        this.personneRepo = personneRepo;
-        this.adresseRepo = adresseRepo;
-    }
-    public Personne ajouterPersonne(Personne personne){
+    //@Autowired removed and constructor removed bring back if a problem happens
+
+    public Personne addPersonne(Personne personne){
         adresseRepo.save(personne.getAdresse());
         return personneRepo.save(personne);
     }
-    public List<Personne> findAllPersonnes(){
+    public List<Personne> getAllPersonnes(){
         return personneRepo.findAll();
     }
-    public Personne findPersonneById(Long id){
-        return personneRepo.findPersonneById(id).orElseThrow(()-> new PersonneNotFoundException("La Personne avec le Id: "+id +"n'a pas ete trouvee!"));
+    public Personne getPersonneById(Long id){
+        return personneRepo.findPersonneById(id).orElseThrow(()-> new NotFoundException("La Personne avec le Id: "+id +"n'a pas ete trouvee!"));
     }
     public Personne updatePersonne(Personne personne){
         adresseRepo.save(personne.getAdresse());
