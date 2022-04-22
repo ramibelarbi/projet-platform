@@ -13,10 +13,12 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Administartion {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private EAdministrationType type;
     @OneToOne
     private Personne Administrateur;
     @OneToMany
     private List<Personne> employes;
+
 }
