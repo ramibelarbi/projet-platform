@@ -23,6 +23,7 @@ public class User {
     private String cin;
     private String lastName;
     private String firstName;
+    private String Email;
 
 
 }

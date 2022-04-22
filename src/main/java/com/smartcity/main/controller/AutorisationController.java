@@ -6,6 +6,7 @@ import com.smartcity.main.repository.DocumentRepository;
 import com.smartcity.main.repository.UserRepository;
 import com.smartcity.main.security.DataEncryption;
 import com.smartcity.main.service.AutorisationService;
+import com.smartcity.main.service.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ public class AutorisationController {
     DocumentRepository documentRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    MailService mailService;
 
     @PostMapping("/request/{document_id}/{user_id}")
     public ResponseEntity<String> requestAutorisation(@PathVariable Long document_id,@PathVariable Long user_id) {
@@ -37,8 +40,16 @@ public class AutorisationController {
         au.setDateDemandeAcces(date);
         autorisationService.requestFile(au) ;
         Long token=autorisationService.getIdWithDateDemandeAccess(date);
-        String encryptedToken=new DataEncryption().Encrypt(String.valueOf(token));
-        return new ResponseEntity<>(encryptedToken, HttpStatus.OK);
+        try {
+            String encryptedToken=new DataEncryption().Encrypt(String.valueOf(token));
+            String reciverEmail=documentRepository.getById(document_id).getCitoyen().getEmail();
+            mailService.sendEmail(reciverEmail,"http://localhost:8080/autorisation/access/"+encryptedToken);
+        }
+        catch (Exception e) {
+             return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>("Request have been submitted we will wait citoyen to confirm access", HttpStatus.OK);
 
     }
 
@@ -46,7 +57,7 @@ public class AutorisationController {
     public ResponseEntity<String> donnerAccess (@PathVariable String id){
         String decryptId=new DataEncryption().Decrypt(id);
         autorisationService.GetAutorisation(Long.valueOf(decryptId));
-        return  new ResponseEntity<>(decryptId,HttpStatus.OK);
+        return  new ResponseEntity<>("Acces done !",HttpStatus.OK);
 
     }
 }

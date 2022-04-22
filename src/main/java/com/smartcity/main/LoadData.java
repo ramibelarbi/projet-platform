@@ -16,9 +16,9 @@ public class LoadData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         ArrayList<User> users =new ArrayList<User>() ;
-        users.add(new User(0L,"0121345","nejah","nejah"));
-        users.add(new User(0L,"4657987","dhia","dhia"));
-        users.add(new User(0L,"0475035","rami","rami"));
+        users.add(new User(0L,"0121345","nejah","nejah","najehbenabdelkader@gmail.com"));
+        users.add(new User(0L,"4657987","dhia","dhia",null));
+        users.add(new User(0L,"0475035","rami","rami",null));
 
         userRepository.saveAll(users);
 

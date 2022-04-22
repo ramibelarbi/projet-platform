@@ -32,6 +32,7 @@ public class AutorisationService {
     public void GetAutorisation(Long id) {
         Autorisation au= autorisationrepository.findById(id).get();
         au.setAccepted(true);
+        au.setDateReponse(new Date());
         autorisationrepository.save(au);
 
     }

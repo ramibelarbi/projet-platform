@@ -10,7 +10,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 @Service("mailService")
-public class MailServiceImpl {
+public class MailService {
 
     @Autowired
     JavaMailSender mailSender;
@@ -21,7 +21,7 @@ public class MailServiceImpl {
 
             helper.setTo(reciver);
             helper.setText(text);
-            helper.setSubject("Hi");
+            helper.setSubject("Acces au document ");
 
             mailSender.send(message);
         }
