@@ -5,6 +5,7 @@ import com.example.smartcity.models.GardeNational;
 import com.example.smartcity.repos.GardeNationalRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class GardeNationalService {
     public GardeNational updateGardeNational(GardeNational gardeNational){
         return gardeNationalRepo.save(gardeNational);
     }
-
+    @Transactional
     public void deleteGardeNational(Long id){
         gardeNationalRepo.deleteGardeNationalById(id);
     }

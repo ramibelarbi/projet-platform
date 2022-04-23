@@ -5,6 +5,7 @@ import com.example.smartcity.models.Ecole;
 import com.example.smartcity.repos.EcoleRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class EcoleService {
     public Ecole updateEcole(Ecole ecole){
         return ecoleRepo.save(ecole);
     }
+    @Transactional
     public void deleteEcole(Long id){
         ecoleRepo.deleteEcoleById(id);
     }

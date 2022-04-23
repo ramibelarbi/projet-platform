@@ -14,5 +14,5 @@ public interface PersonneRepo extends JpaRepository<Personne,Long> {
     void deletePersonneById(Long id);
     List<Personne> findPersonnesByAdresse_Gouvernerat(Gouvernerat gouvernerat);
     List<Personne> findPersonneByAdresse_Ville(String ville);
-
+    Personne findPersonneByCin(String cin);
 }

@@ -6,6 +6,7 @@ import com.example.smartcity.models.Municipalite;
 import com.example.smartcity.repos.MunicipaliteRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class MunicipaliteService {
     public Municipalite updateMunicipalite(Municipalite municipalite){
         return municipaliteRepo.save(municipalite);
     }
-
+    @Transactional
     public void deleteMunicipalite(Long id){
         municipaliteRepo.deleteMunicipaliteById(id);
     }

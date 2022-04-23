@@ -5,6 +5,7 @@ import com.example.smartcity.models.Poste;
 import com.example.smartcity.repos.PosteRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PosteService {
     public Poste updatePoste(Poste poste){
         return posteRepo.save(poste);
     }
-
+    @Transactional
     public void deletePoste(Long id){
         posteRepo.deletePosteById(id);
     }

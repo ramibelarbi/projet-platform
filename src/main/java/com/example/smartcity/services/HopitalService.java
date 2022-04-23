@@ -5,6 +5,7 @@ import com.example.smartcity.models.Hopital;
 import com.example.smartcity.repos.HopitalRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class HopitalService {
     public Hopital updateHopital(Hopital hopital){
         return hopitalRepo.save(hopital);
     }
-
+    @Transactional
     public void deleteHopital(Long id){
         hopitalRepo.deleteHopitalById(id);
     }
