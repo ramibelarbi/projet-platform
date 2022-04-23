@@ -12,6 +12,8 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,7 @@ import com.example.demo.Security.JwtProvider;
 import com.example.demo.Security.UserPrincipal;
 import com.example.demo.Services.PersonneService;
 import com.example.demo.model.Personne;
+import com.example.demo.repositry.PersonneRep;
 
 
 
@@ -43,6 +46,8 @@ public class AuthenticationController {
 	
 	@Autowired
 	JwtProvider jwtProvider;
+	@Autowired
+	private PersonneRep Personnerep;
 	
 	@GetMapping("/login")
 	@ResponseBody
@@ -79,9 +84,14 @@ public class AuthenticationController {
 		}
 		
 	}
-	
+	@PostMapping("/Personne")
+	public Personne createPrsonne(@RequestBody Personne personne) {
+		PasswordEncoder encoder=new BCryptPasswordEncoder();
+		personne.setMot_de_pasee(encoder.encode(personne.getMot_de_pasee()));
+		personne.setEnabled(true);
+		return Personnerep.save(personne);
 	
 	
 
 
-}
+}}
