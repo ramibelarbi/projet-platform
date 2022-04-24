@@ -22,6 +22,8 @@ public class Personne implements Serializable {
     private String nom;
     private String prenom;
     private Role role;
+    @Column(unique = true,nullable = false)
+    private String email;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dateNaissance;
     @OneToOne
