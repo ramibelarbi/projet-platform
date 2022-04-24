@@ -7,6 +7,7 @@ import com.example.smartcity.models.Personne;
 import com.example.smartcity.repos.AdministrationRepo;
 import com.example.smartcity.repos.DocumentRepository;
 import com.example.smartcity.repos.PersonneRepo;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -23,15 +24,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 @Service
-@Slf4j
+@Slf4j @AllArgsConstructor
 public class DocumentService {
 
-    @Autowired
-    DocumentRepository documentRepository;
-    @Autowired
-    AdministrationRepo administrationRepo;
-    @Autowired
-    PersonneRepo personneRepo;
+
+    private final DocumentRepository documentRepository;
+
+    private final AdministrationRepo administrationRepo;
+
+    private final PersonneRepo personneRepo;
 
     public ResponseEntity<InputStreamResource> downloadDocument(Document document) throws IOException {
         System.out.println("Calling Download:- " + "fileName");

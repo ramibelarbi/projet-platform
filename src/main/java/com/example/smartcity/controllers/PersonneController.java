@@ -1,7 +1,9 @@
 package com.example.smartcity.controllers;
 
 
+import com.example.smartcity.models.Gouvernerat;
 import com.example.smartcity.models.Personne;
+import com.example.smartcity.models.Role;
 import com.example.smartcity.services.PersonneService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,22 @@ public class PersonneController {
         List<Personne> personnes = personneService.getAllPersonnes();
         return new ResponseEntity<>(personnes, HttpStatus.OK);
     }
+    @GetMapping("/administratuers/all")
+    public ResponseEntity<List<Personne>> getAllAdministrateurs(){
+        List<Personne> administrateurs = personneService.getPersonnesByRole(Role.Administrateur);
+        return new ResponseEntity<>(administrateurs, HttpStatus.OK);
+    }
+    @GetMapping("/employes/all")
+    public ResponseEntity<List<Personne>> getAllEmployes(){
+        List<Personne> employes = personneService.getPersonnesByRole(Role.Employe);
+        return new ResponseEntity<>(employes, HttpStatus.OK);
+    }
+
+    @GetMapping("/citoyens/all")
+    public ResponseEntity<List<Personne>> getAllCitoyens(){
+        List<Personne> citoyens = personneService.getPersonnesByRole(Role.Citoyen);
+        return new ResponseEntity<>(citoyens, HttpStatus.OK);
+    }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Personne> getPersonneById(@PathVariable("id") Long id){
@@ -32,6 +50,12 @@ public class PersonneController {
         Personne personne = personneService.getPersonneByCin(cin);
         return new ResponseEntity<>(personne, HttpStatus.OK);
     }
+    @GetMapping("/gouvernerat/{gouvernerat}")
+    public ResponseEntity<List<Personne>> getPersonneByGouvernerat(@PathVariable Gouvernerat gouvernerat){
+        List<Personne> personnes = personneService.getPersonnesByGouvernerat(gouvernerat);
+        return new ResponseEntity<>(personnes, HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Personne> addPersonne(@RequestBody Personne personne){
         Personne newPersonne = personneService.addPersonne(personne);

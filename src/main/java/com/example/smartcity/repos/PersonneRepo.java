@@ -2,6 +2,7 @@ package com.example.smartcity.repos;
 
 import com.example.smartcity.models.Gouvernerat;
 import com.example.smartcity.models.Personne;
+import com.example.smartcity.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 public interface PersonneRepo extends JpaRepository<Personne,Long> {
     Optional<Personne> findPersonneById(Long id);
     void deletePersonneById(Long id);
+    List<Personne> findPersonnesByRole(Role role);
     List<Personne> findPersonnesByAdresse_Gouvernerat(Gouvernerat gouvernerat);
     List<Personne> findPersonneByAdresse_Ville(String ville);
     Personne findPersonneByCin(String cin);

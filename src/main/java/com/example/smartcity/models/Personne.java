@@ -18,6 +18,7 @@ public class Personne implements Serializable {
     private Long id;
     @Column(unique = true,nullable = false)
     private String cin;
+    @Column(nullable = false)
     private String password;
     private String nom;
     private String prenom;

@@ -1,7 +1,9 @@
 package com.example.smartcity.services;
 
 import com.example.smartcity.exceptions.NotFoundException;
+import com.example.smartcity.models.Gouvernerat;
 import com.example.smartcity.models.Personne;
+import com.example.smartcity.models.Role;
 import com.example.smartcity.repos.AdresseRepo;
 import com.example.smartcity.repos.PersonneRepo;
 import lombok.AllArgsConstructor;
@@ -42,7 +44,9 @@ public class PersonneService implements UserDetailsService {
     public Personne getPersonneByCin(String cin){
         return personneRepo.findPersonneByCin(cin);
     }
-
+    public List<Personne> getPersonnesByRole(Role role){
+        return personneRepo.findPersonnesByRole(role);
+    }
     public Personne addPersonne(Personne personne){
         adresseRepo.save(personne.getAdresse());
         personne.setPassword(passwordEncoder.encode(personne.getPassword()));
@@ -54,6 +58,11 @@ public class PersonneService implements UserDetailsService {
     public Personne getPersonneById(Long id){
         return personneRepo.findPersonneById(id).orElseThrow(()-> new NotFoundException("La Personne avec le Id: "+id +"n'a pas ete trouvee!"));
     }
+
+    public List<Personne> getPersonnesByGouvernerat(Gouvernerat gouvernerat){
+        return personneRepo.findPersonnesByAdresse_Gouvernerat(gouvernerat);
+    }
+
     public Personne updatePersonne(Personne personne){
         adresseRepo.save(personne.getAdresse());
         personne.setPassword(passwordEncoder.encode(personne.getPassword()));
