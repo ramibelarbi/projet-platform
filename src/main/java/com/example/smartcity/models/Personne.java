@@ -16,7 +16,7 @@ import java.util.Date;
 public class Personne implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String cin;
     private String password;
     private String nom;

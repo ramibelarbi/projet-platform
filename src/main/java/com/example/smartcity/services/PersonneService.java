@@ -39,6 +39,9 @@ public class PersonneService implements UserDetailsService {
         return new User(user.getCin(),user.getPassword(),authorities);
     }
 
+    public Personne getPersonneByCin(String cin){
+        return personneRepo.findPersonneByCin(cin);
+    }
 
     public Personne addPersonne(Personne personne){
         adresseRepo.save(personne.getAdresse());

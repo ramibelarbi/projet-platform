@@ -27,7 +27,11 @@ public class PersonneController {
         Personne personne = personneService.getPersonneById(id);
         return new ResponseEntity<>(personne, HttpStatus.OK);
     }
-
+    @GetMapping("/cin/{cin}")
+    public ResponseEntity<Personne> getPersonneByCin(@PathVariable("cin") String cin){
+        Personne personne = personneService.getPersonneByCin(cin);
+        return new ResponseEntity<>(personne, HttpStatus.OK);
+    }
     @PostMapping("/add")
     public ResponseEntity<Personne> addPersonne(@RequestBody Personne personne){
         Personne newPersonne = personneService.addPersonne(personne);
