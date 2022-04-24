@@ -21,6 +21,7 @@ public class NotificationController {
     public final NotificationService notificationService;
     public final PersonneService personneService;
     public final AdministrationService administrationService;
+
     @GetMapping("/find/{id}")
     ResponseEntity<Notification> getNotification(@PathVariable("id") Long id){
         Notification notification = notificationService.getNotification(id);
