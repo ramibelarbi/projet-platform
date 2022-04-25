@@ -20,5 +20,4 @@ public abstract class Administartion {
     private Personne Administrateur;
     @OneToMany
     private List<Personne> employes;
-
 }

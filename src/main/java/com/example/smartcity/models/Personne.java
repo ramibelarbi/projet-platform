@@ -22,6 +22,7 @@ public class Personne implements Serializable {
     private String password;
     private String nom;
     private String prenom;
+    private String num_tel;
     private Role role;
     @Column(unique = true,nullable = false)
     private String email;
