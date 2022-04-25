@@ -4,7 +4,7 @@ public enum Gouvernerat {
     Ariana,
     Beja,
     Ben_Arous,
-    Bizete,
+    Bizerte,
     Gabes,
     Gafsa,
     Jandouba,
