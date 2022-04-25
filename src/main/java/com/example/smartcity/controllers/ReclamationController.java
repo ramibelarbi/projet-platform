@@ -3,7 +3,7 @@ package com.example.smartcity.controllers;
 import com.example.smartcity.models.Reclamation;
 import com.example.smartcity.repos.AdministrationRepo;
 import com.example.smartcity.repos.PersonneRepo;
-import com.example.smartcity.repos.ReclamationRepo;
+
 import com.example.smartcity.services.ReclamationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController @RequestMapping("/reclamations")@AllArgsConstructor
+@RestController @RequestMapping("/reclamations")@AllArgsConstructor @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 public class ReclamationController {
     private final ReclamationService reclamationService;
     public final PersonneRepo personneRepo;

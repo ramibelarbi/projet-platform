@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/administration/poste")
+@RequestMapping(path="/administration/poste") @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 @AllArgsConstructor
 public class PosteController {
     PosteService posteService;

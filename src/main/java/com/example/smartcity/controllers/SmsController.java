@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/sms")@AllArgsConstructor
+@RequestMapping("/sms")@AllArgsConstructor @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 public class SmsController {
     private final SmsService smsService;
 

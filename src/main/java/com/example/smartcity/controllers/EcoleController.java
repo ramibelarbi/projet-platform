@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/administration/ecole")
-@AllArgsConstructor
+@AllArgsConstructor @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 public class EcoleController {
     EcoleService ecoleService;
 

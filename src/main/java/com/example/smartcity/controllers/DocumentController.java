@@ -5,6 +5,7 @@ import com.example.smartcity.models.Document;
 import com.example.smartcity.repos.AutorisationRepository;
 import com.example.smartcity.services.DocumentService;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -20,12 +21,13 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequestMapping("/pdf")
+@CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200") @AllArgsConstructor
 public class DocumentController {
 
-    @Autowired
-    DocumentService documentService;
-    @Autowired
-    AutorisationRepository autorisationRepository;
+
+    private final DocumentService documentService;
+
+    private final AutorisationRepository autorisationRepository;
 
     @RequestMapping(value = "/download", method = RequestMethod.GET, produces = "application/pdf")
     public ResponseEntity<?> download(@RequestBody Document document) throws IOException {

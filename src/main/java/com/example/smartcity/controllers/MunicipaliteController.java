@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/administration/municipalite")
-@AllArgsConstructor
+@AllArgsConstructor @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 public class MunicipaliteController {
     MunicipaliteService municipaliteService;
 

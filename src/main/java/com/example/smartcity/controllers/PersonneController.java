@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/personne") @AllArgsConstructor
+@RequestMapping(path="/personne") @AllArgsConstructor @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 public class PersonneController {
     //@Autowired removed bring back if any problem occurs
     private final PersonneService personneService;

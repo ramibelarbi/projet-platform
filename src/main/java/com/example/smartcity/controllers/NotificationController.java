@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController@AllArgsConstructor
-@RequestMapping("/notifications")
+@RequestMapping("/notifications") @CrossOrigin(allowCredentials = "true", origins = "http://localhost:4200")
 public class NotificationController {
     public final NotificationService notificationService;
     public final PersonneService personneService;
